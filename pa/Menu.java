@@ -49,4 +49,14 @@ public class Menu {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "name='" + name + '\'' +
+                ", content=" + content +
+                ", creationDate=" + creationDate +
+                ", price=" + price +
+                '}';
+    }
 }

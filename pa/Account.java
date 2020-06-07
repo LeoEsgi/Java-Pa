@@ -15,6 +15,9 @@ class Account {
     AccountType type;
     boolean activated;
 
+    public Account() {
+    }
+
     public Account(String firstname, String lastname, String city, String country, AccountType type, boolean activated) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -70,5 +73,17 @@ class Account {
 
     public void setActivated(boolean activated) {
         this.activated = activated;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", type=" + type +
+                ", activated=" + activated +
+                '}';
     }
 }
