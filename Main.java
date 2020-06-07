@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 
 public class Main extends Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         JFrame fen = new JFrame("JAVA_PA"); // on créé une fenêtre
         fen.setSize(400 , 300); // on gére la taille de la fenêtre
@@ -38,6 +38,8 @@ public class Main extends Application {
         JMenuItem Quit = new JMenuItem("Quit");
         MenuAccount.add(Quit);
 
+
+
         // créé l'action qui va être éxécuté
         Quit.addActionListener(new ActionListener() {
             @Override
@@ -48,6 +50,9 @@ public class Main extends Application {
         });
 
         fen.setVisible(true); // affiche la fenêtre
+
+
+        PA.GetUser(1);
 
 
 
