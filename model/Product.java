@@ -1,8 +1,8 @@
-package pa;
+package model;
 
 public class Product {
 
-     enum ProductType {
+   public enum ProductType {
          STARTER,
          DISH,
          DESSERT,
