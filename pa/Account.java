@@ -2,14 +2,20 @@ package pa;
 
 class Account {
 
+    public enum AccountType {
+        EMPLOYEE,
+        FRANCHISE,
+        CUSTOMER
+    }
+
     String firstname;
     String lastname;
     String city;
     String country;
-    int type;
+    AccountType type;
     boolean activated;
 
-    public Account(String firstname, String lastname, String city, String country, int type, boolean activated) {
+    public Account(String firstname, String lastname, String city, String country, AccountType type, boolean activated) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.city = city;
@@ -50,11 +56,11 @@ class Account {
         this.country = country;
     }
 
-    public int getType() {
+    public AccountType getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(AccountType type) {
         this.type = type;
     }
 

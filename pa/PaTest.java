@@ -13,16 +13,14 @@ public class PaTest {
     @Test
     public void testCreateAccount() {
 
-        Account A = new Account("jean", "petigros","Marseille", "France", 1, true);
+        Account A = new Account("jean", "petigros","Marseille", "France", Account.AccountType.CUSTOMER, true);
 
         assertEquals(A.getFirstname(), "jean");
         assertEquals(A.getLastname(), "petigros");
         assertEquals(A.getCity(), "Marseille");
         assertEquals(A.getCountry(), "France");
-        assertEquals(A.getType(), 1);
+        assertEquals(A.getType(), Account.AccountType.CUSTOMER);
         assertEquals(A.isActivated(), true);
-
-
 
     }
 
