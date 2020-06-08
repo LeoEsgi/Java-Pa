@@ -1,15 +1,15 @@
 package windows;
 
+import database.AuthService;
 import model.WindowSize;
 
-import java.util.Arrays;
 import java.awt.event. *;
 import javax.swing.*;
 
 public class Logging extends JFrame implements ActionListener{
 
     private JTextField Email = new JTextField();
-    private JPasswordField Password = new JPasswordField();
+    private JTextField Password = new JTextField();
     private JButton Log = new JButton("Log");
     private JLabel Connexion = new JLabel("<html><font size=34 >Connexion</font></html>");
 
@@ -28,13 +28,13 @@ public class Logging extends JFrame implements ActionListener{
      //   panel.add(createMenuBar()); // créé une barre de menu et l'ajoute au panel
 
 
-        Connexion.setBounds(50,80,300,50);
+        Connexion.setBounds(360,80,300,50);
         this.getContentPane().add(Connexion);
-        Email.setBounds(0,180,300,30);
+        Email.setBounds(300,180,300,30);
         this.getContentPane().add(Email);
-        Password.setBounds(0,215,300,30);
+        Password.setBounds(300,215,300,30);
         this.getContentPane().add(Password);
-        Log.setBounds(0,250,300,50);
+        Log.setBounds(300,250,300,50);
         Log.addActionListener(this);  // renvoie vers la fonction actionPerformed() lors du click
         this.getContentPane().add(Log);
 
@@ -64,18 +64,20 @@ public class Logging extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         String email = Email.getText(); // récupère l'email
-        char[] password = Password.getPassword(); // récupère le mdp
+        String password = Password.getText(); // récupère le mdp
         System.out.println(" Email : " + email);
-        System.out.println( " Password : " + Arrays.toString(password));
-        if(!email.isEmpty() && password.length > 0) {
-            this.dispose();
-            Home home = new Home();
+        System.out.println( " Password : " + password);
+        if(!email.isEmpty() && !password.isEmpty()) {
+            try {
+                AuthService.GetUser(email, password);
+                this.dispose();
+                Home home = new Home();
+
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+
         }
-        else{
-
-
-        }
-
 
 
     }

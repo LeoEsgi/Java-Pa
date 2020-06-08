@@ -14,10 +14,11 @@ public class PA {
     static String path = "/api/user/";
 
 
-    public static void GetUser(int id) throws Exception {
+    public static void GetUser(String mail, String pass) throws Exception {
 
-        URL url = new URL(host + path + "?id=" + URLEncoder.encode(String.valueOf(id), StandardCharsets.UTF_8)); // Construction de l'url de l'api
+        URL url = new URL(host + path + "?email=" + mail + "&password=" + pass); // Construction de l'url de l'api
 
+        System.out.println(url);
         HttpURLConnection connection = (HttpURLConnection)url.openConnection(); // Creation de la connection http
 
         connection.setRequestProperty("Content-Type", "application/json");
