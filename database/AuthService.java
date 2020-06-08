@@ -1,4 +1,6 @@
 package database;
+import model.Account;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -8,7 +10,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
 
-public class PA {
+public class AuthService {
 
     static String host = "http://51.83.45.52";
     static String path = "/api/user/";
@@ -36,6 +38,10 @@ public class PA {
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
             }
+
+            Account user = new Account();
+
+
             in.close();
 
             // print result
