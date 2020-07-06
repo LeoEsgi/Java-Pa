@@ -1,8 +1,10 @@
 package windows;
 
 import database.AuthService;
+import model.Account;
 import model.WindowSize;
 
+import java.awt.*;
 import java.awt.event. *;
 import javax.swing.*;
 
@@ -12,6 +14,7 @@ public class Logging extends JFrame implements ActionListener{
     private JTextField Password = new JTextField();
     private JButton Log = new JButton("Log");
     private JLabel Connexion = new JLabel("<html><font size=34 >Connexion</font></html>");
+    private JLabel Message = new JLabel();
 
 
     public Logging(){
@@ -25,18 +28,32 @@ public class Logging extends JFrame implements ActionListener{
         JPanel panel = (JPanel) this.getContentPane(); // on récupère le container
         panel.setLayout(null);  // annule layout par défault pour pouvoir placer ses widget ou l'on souhaite
 
-     //   panel.add(createMenuBar()); // créé une barre de menu et l'ajoute au panel
+
+        // User Label
+        JLabel EmailLabel = new JLabel();
+        EmailLabel.setText("User Email :");
+
+        // Password
+
+        JLabel PasswordLabel = new JLabel();
+        PasswordLabel.setText("Password :");
 
 
         Connexion.setBounds(360,80,300,50);
-        this.getContentPane().add(Connexion);
+        panel.add(Connexion);
+        EmailLabel.setBounds(220,180,80,30);
+        panel.add(EmailLabel);
         Email.setBounds(300,180,300,30);
-        this.getContentPane().add(Email);
+        panel.add(Email);
+        PasswordLabel.setBounds(220,215,80,30);
+        panel.add(PasswordLabel);
         Password.setBounds(300,215,300,30);
-        this.getContentPane().add(Password);
+        panel.add(Password);
         Log.setBounds(300,250,300,50);
         Log.addActionListener(this);  // renvoie vers la fonction actionPerformed() lors du click
-        this.getContentPane().add(Log);
+        panel.add(Log);
+        Message.setBounds(300,300,300,50);
+        panel.add(Message);
 
         this.setVisible(true);
 
@@ -69,14 +86,26 @@ public class Logging extends JFrame implements ActionListener{
         System.out.println( " Password : " + password);
         if(!email.isEmpty() && !password.isEmpty()) {
             try {
-                AuthService.GetUser(email, password);
-                this.dispose();
-                Home home = new Home();
+                Account user = AuthService.GetUser(email, password);
+                if(user != null){
+                    this.dispose();
+                    Home home = new Home(user);
+                }
+                else{
+                    Message.setText("ACCOUNT NOT FOUND...");
+                    Message.setForeground(Color.RED);
+                }
+               // this.dispose();
+               // Home home = new Home();
 
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
 
+        }
+        else{
+            Message.setText("PLEASE FILL THE TEXT FIELDS...");
+            Message.setForeground(Color.RED);
         }
 
 
