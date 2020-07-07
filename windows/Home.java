@@ -14,9 +14,6 @@ public class Home extends JFrame implements ActionListener {
 
 
     private Account User = new Account();
-    private JButton Create = new JButton("");
-    private JButton Remove = new JButton("");
-    private JButton Change = new JButton("");
     private JButton Card = new JButton("Give Point to friend");
     private JComboBox listUser = new JComboBox();
     private JSpinner spinner = new JSpinner();

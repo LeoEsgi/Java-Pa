@@ -11,7 +11,7 @@ import javax.swing.*;
 public class Logging extends JFrame implements ActionListener{
 
     private JTextField Email = new JTextField();
-    private JTextField Password = new JTextField();
+    private JPasswordField  Password = new JPasswordField ();
     private JButton Log = new JButton("Log");
     private JLabel Connexion = new JLabel("<html><font size=34 >Connexion</font></html>");
     private JLabel Message = new JLabel();
@@ -95,8 +95,6 @@ public class Logging extends JFrame implements ActionListener{
                     Message.setText("ACCOUNT NOT FOUND...");
                     Message.setForeground(Color.RED);
                 }
-               // this.dispose();
-               // Home home = new Home();
 
             } catch (Exception exception) {
                 exception.printStackTrace();
