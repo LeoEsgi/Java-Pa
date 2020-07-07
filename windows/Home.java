@@ -40,7 +40,7 @@ public class Home extends JFrame implements ActionListener {
 
         spinner.setModel(model);
 
-        spinner.setBounds(360,80,300,50);
+        spinner.setBounds(20,80,300,50);
         panel.add(spinner);
 
 
@@ -53,9 +53,9 @@ public class Home extends JFrame implements ActionListener {
             if (account.getId() != user.getId())
                 listUser.addItem(account.getId() + " - " + account.getFirstname() + " " + account.getLastname());
         }
-        listUser.setBounds(360,135,300,50);
+        listUser.setBounds(20,135,300,50);
         panel.add(listUser);
-        Card.setBounds(360,200,300,50);
+        Card.setBounds(20,200,300,50);
         Card.addActionListener((ActionListener) this);
         panel.add(Card);
 
