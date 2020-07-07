@@ -14,9 +14,10 @@ public class Home extends JFrame implements ActionListener {
 
 
     private Account User;
-    private JButton Card = new JButton("Give Point to friend");
+    private JButton Card = new JButton("Envoyer points a un ami");
     private JComboBox<String> listUser = new JComboBox<>();
     private JSpinner spinner = new JSpinner();
+    private JLabel points = new JLabel();
 
 
 
@@ -31,10 +32,11 @@ public class Home extends JFrame implements ActionListener {
         panel.setLayout(null);
         User = user;
 
-        SpinnerModel model = new SpinnerNumberModel(1, 1, user.getPoints(), 1);
+        points.setBounds(70,20,300,50);
+        panel.add(points);
 
-        spinner.setModel(model);
-        spinner.setBounds(20,80,100,50);
+        chargeModel();
+        spinner.setBounds(20,80,300,50);
         panel.add(spinner);
 
 
@@ -57,6 +59,12 @@ public class Home extends JFrame implements ActionListener {
 
     }
 
+    public void chargeModel(){
+        points.setText("Nombre de points restant : "+User.getPoints());
+        SpinnerModel model = new SpinnerNumberModel(1, 1, User.getPoints(), 1);
+        spinner.setModel(model);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -68,6 +76,8 @@ public class Home extends JFrame implements ActionListener {
            PointService PS = new PointService();
             try {
                 PS.UpdatePoint(User.getId() , Integer.parseInt(String.valueOf(UserTo.toString().charAt(0))), Integer.parseInt(number.toString()));
+                User.setPoints(User.getPoints() - Integer.parseInt(number.toString()));
+                chargeModel();
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
