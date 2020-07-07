@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -32,19 +33,7 @@ public class AuthService {
         System.out.println("GET Response Code :: " + responseCode);
 
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
-            BufferedReader in = new BufferedReader(new InputStreamReader(
-                    connection.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-
-
-            in.close();
-
-            JSONObject data = new JSONObject(response.toString());
+            JSONObject data = Buffer(connection);
             JSONObject userJson = new JSONObject(data.get("User").toString());
 
             Account user = new Account();
@@ -66,7 +55,6 @@ public class AuthService {
 
     }
 
-
     public static List<Account> GetAllUser() throws Exception {
 
         URL url = new URL(host + path + "?allUser"); // Construction de l'url de l'api
@@ -81,16 +69,8 @@ public class AuthService {
         System.out.println("GET Response Code :: " + responseCode);
 
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
-            BufferedReader in = new BufferedReader(new InputStreamReader(
-                    connection.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
 
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-            JSONObject data = new JSONObject(response.toString());
+            JSONObject data = Buffer(connection);
             JSONArray userJson = new JSONArray(data.get("Users").toString());
 
             List<Account> users = new ArrayList<Account>();
@@ -115,5 +95,18 @@ public class AuthService {
         }
         return null;
 
+    }
+
+    private static JSONObject Buffer(HttpURLConnection connection) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                connection.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+        return new JSONObject(response.toString());
     }
 }

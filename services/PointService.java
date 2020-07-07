@@ -7,7 +7,7 @@ import java.net.URL;
 
 public class PointService {
 
-    static String host = "localhost/post";
+    static String host = "localhost";
     static String path = "/api/card/";
 
 

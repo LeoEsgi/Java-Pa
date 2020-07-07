@@ -13,9 +13,9 @@ import java.util.Objects;
 public class Home extends JFrame implements ActionListener {
 
 
-    private Account User = new Account();
+    private Account User;
     private JButton Card = new JButton("Give Point to friend");
-    private JComboBox listUser = new JComboBox();
+    private JComboBox<String> listUser = new JComboBox<>();
     private JSpinner spinner = new JSpinner();
 
 
@@ -29,25 +29,20 @@ public class Home extends JFrame implements ActionListener {
 
         JPanel panel = (JPanel) this.getContentPane(); // on récupère le container
         panel.setLayout(null);
-
         User = user;
-
 
         SpinnerModel model = new SpinnerNumberModel(1, 1, user.getPoints(), 1);
 
         spinner.setModel(model);
-
-        spinner.setBounds(20,80,300,50);
+        spinner.setBounds(20,80,100,50);
         panel.add(spinner);
-
 
 
         Account[] users = Objects.requireNonNull(AuthService.GetAllUser()).toArray(new Account[0]);
 
-
-
         for (Account account : users) {
             if (account.getId() != user.getId())
+
                 listUser.addItem(account.getId() + " - " + account.getFirstname() + " " + account.getLastname());
         }
         listUser.setBounds(20,135,300,50);
