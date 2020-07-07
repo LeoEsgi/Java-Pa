@@ -8,23 +8,34 @@ public class Account {
         CUSTOMER
     }
 
+    int id;
     String firstname;
     String lastname;
     String city;
     String country;
     AccountType type;
+    int points;
     boolean activated;
 
     public Account() {
     }
 
-    public Account(String firstname, String lastname, String city, String country, AccountType type, boolean activated) {
+    public Account(int id,String firstname, String lastname, String city, String country, AccountType type,int points, boolean activated) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.city = city;
         this.country = country;
         this.type = type;
+        this.points = points;
         this.activated = activated;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstname() {
@@ -65,6 +76,14 @@ public class Account {
 
     public void setType(AccountType type) {
         this.type = type;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     public boolean isActivated() {

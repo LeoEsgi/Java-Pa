@@ -1,4 +1,3 @@
-import database.PA;
 import windows.Logging;
 
 import javax.swing.*;
@@ -16,8 +15,6 @@ public class Main {
         Logging app = new Logging();
 
 
-
-        PA.GetUser(1);
 
 
 
